@@ -43,6 +43,17 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'heroku' => [
+            'driver' => 'pgsql',
+            'host'=> parse_url(getenv("DATABASE_URL"))["host"],
+            'database' => substr(parse_url(getenv("DATABASE_URL"))["path"],
+            'username' => parse_url(getenv("DATABASE_URL"))["user"],
+            'password' => parse_url(getenv("DATABASE_URL"))["pass"],
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
